@@ -12,7 +12,8 @@ echo -e "\033[1;35m#####################################\033[0m"
 echo -e "\033[5;32mBuscando Hosts....\033[0m"
 echo -e "\033[1;35m#####################################\033[0m "
 wget -q "$1"
-grep href index.html | cut -d "/" -f3 | grep "\." | cut -d '"' -f1 | sort -u | grep -v "return"  | grep -v "<a" | grep -v "<li" | grep -v "#" | grep ".gif" > lista
+cat index.html | grep "<a" | grep "href" | grep "http" | cut -d '"' -f2 | grep "http" | cut -d "/" -f3 | grep -v ":" > lista
+# "old" grep href index.html | cut -d "/" -f3 | grep "\." | cut -d '"' -f1 | sort -u | grep -v "return"  | grep -v "<a" | grep -v "<li" | grep -v "#" | grep ".gif" > lista
 cat lista
 echo -e "\033[1;35m#####################################\033[0m"
 echo -e "\033[5;32mResolvendo Hosts....\033[0m"
